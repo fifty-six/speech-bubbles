@@ -1,0 +1,9 @@
+[project]
+name = "speech-bubble"
+version = "0.1.0"
+description = "Add a speech bubble to an image"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "marimo[recommended]>=0.13.10",
+]
