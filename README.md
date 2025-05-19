@@ -10,6 +10,8 @@ marimo run bubbles.py
 
 A simple CLI tool (or marimo notebook) for adding a speech bubble to an image. 
 
+You can run the notebook online [here](https://marimo.io/p/@fiftysix/speech-bubbles).
+
 e.g.
 
 | Before | After | 
