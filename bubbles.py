@@ -52,7 +52,6 @@ def _(PIL, file, io, mo):
         mo.stop(file.contents() is None, mo.md("**Select a file to continue!**"))
     
     img = PIL.Image.open(io.BytesIO(file.contents())).convert("RGBA")
-    # img = PIL.Image.open(file.name()).convert("RGBA")
     img
     return (img,)
 
