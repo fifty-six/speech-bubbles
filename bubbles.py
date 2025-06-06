@@ -19,6 +19,7 @@ def _():
     import pathlib
     import argparse
     from typing import Optional
+
     return Image, ImageDraw, Optional, PIL, argparse, io, mo, pathlib
 
 
@@ -47,7 +48,7 @@ def _(argparse, mo):
             contents = f.read()
 
         file = MoFile(args.path, contents)
-    
+
     file
     return args, file
 
@@ -56,7 +57,7 @@ def _(argparse, mo):
 def _(PIL, file, io, mo):
     if mo.running_in_notebook():
         mo.stop(file.contents() is None, mo.md("**Select a file to continue!**"))
-    
+
     img = PIL.Image.open(io.BytesIO(file.contents())).convert("RGBA")
     img
     return (img,)
@@ -68,8 +69,18 @@ def _(Image, ImageDraw, img):
     res.paste(img, (0, img.width // 12))
     draw = ImageDraw.Draw(res)
 
-    draw.ellipse([(-img.width // 2, -img.width * 3/4), (img.width * 1.5, img.width // 7)], fill=(0, 0, 0, 0))
-    draw.polygon([(49/64 * img.width, img.width // 4), (.82 * img.width, 0), (img.width, .0445 * img.width)], fill=(0, 0, 0, 0))
+    draw.ellipse(
+        [(-img.width // 2, -img.width * 3 / 4), (img.width * 1.5, img.width // 7)],
+        fill=(0, 0, 0, 0),
+    )
+    draw.polygon(
+        [
+            (49 / 64 * img.width, img.width // 4),
+            (0.82 * img.width, 0),
+            (img.width, 0.0445 * img.width),
+        ],
+        fill=(0, 0, 0, 0),
+    )
     return (res,)
 
 
@@ -106,7 +117,6 @@ def _(args, file, io, mo, pathlib, res):
                 align="center",
                 justify="space-around",
             )
-
 
     save()
     return
