@@ -1,3 +1,4 @@
+import sys
 import marimo
 
 __generated_with = "0.13.10"
@@ -74,9 +75,16 @@ def _(args, file, io, mo, pathlib, res):
 
         if not mo.running_in_notebook():
             if args.output:
-                res.save(args.output)
+                out_path = args.output
             else:
-                res.save(path.with_stem(path.stem + "_bubble"))
+                out_path = path.with_stem(path.stem + "_bubble")
+
+            try:
+                res.save(out_path)
+                print(f"Saved result to {out_path}")
+            except (ValueError, OSError) as e:
+                print(f"Unable to save: {e}")
+                sys.exit(1)
         else:
             bin = io.BytesIO()
             res.save(bin, format="png")
