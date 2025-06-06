@@ -1,6 +1,11 @@
 import sys
 import marimo
 
+# pyright: basic
+
+# Last line in a cell is used as the result by marimo
+# pyright: reportUnusedExpression=false
+
 __generated_with = "0.13.10"
 app = marimo.App(width="medium")
 
@@ -18,13 +23,13 @@ def _():
 
 
 @app.cell
-def _(Optional, argparse, mo):
+def _(argparse, mo):
     class MoFile:
         def __init__(self, name, contents):
             self._name = name
             self._contents = contents
 
-        def contents(self) -> Optional[bytes]:
+        def contents(self) -> bytes | None:
             return self._contents
 
         def name(self) -> str:
